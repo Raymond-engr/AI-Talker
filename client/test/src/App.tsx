@@ -19,13 +19,6 @@ const App: React.FC = () => {
     } else {
       createNewChat();
     }
-
-    const newSocket = io('http://localhost:3000');
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
   }, []);
 
   useEffect(() => {

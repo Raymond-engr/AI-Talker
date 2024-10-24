@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from './components/Footer';
-import { Chat } from '../types';
+import Footer from '../components/Footer';
+import { Chat } from '../types/global.d.ts';
 
 interface NewChatPageProps {
   chats: Chat[];
@@ -20,7 +20,7 @@ const NewChatPage: React.FC<NewChatPageProps> = ({ chats, onSelectChat, onCreate
           <button
             key={chat.id}
             onClick={() => onSelectChat(chat.id)}
-            className="w-full text-left p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition duration-300"
+            className="w-full text-left p-4 bg-gray-800 rounded-lg shadow hover:bg-gray-50 transition duration-300"
           >
             <h2 className="font-semibold">Chat {chat.id}</h2>
             <p className="text-gray-500 truncate">
