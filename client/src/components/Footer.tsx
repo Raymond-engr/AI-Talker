@@ -8,10 +8,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onNewChat }) => {
   return (
-    <footer className="p-4 bg-gray-900 shadow">
+    <footer className="p-4 bg-gray-600 shadow">
       <button
         onClick={onNewChat}
-        className="w-full bg-orange-500 text-white p-2 rounded-lg flex items-center justify-center"
+        className="w-full bg-blue-600 text-white p-2 rounded-lg flex items-center justify-center"
       >
       <FontAwesomeIcon icon={faPlus} className="mr-2" /> New Chat
       </button>

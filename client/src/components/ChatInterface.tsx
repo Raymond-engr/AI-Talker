@@ -43,16 +43,16 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ chat, onSendMessage, onNe
     <>
     <Header />
     <main className="flex-1 flex flex-col overflow-hidden">
-    <div className="p-4 text-center">
+    <div className="bg-gray-400 p-4 text-center">
           {!isListening ? (
             <button
               onClick={handleSpeak}
-              className="bg-blue-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-600 transition duration-300"
+              className="bg-blue-400 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-600 transition duration-300"
             >
               SPEAK
             </button>
           ) : (
-            <div className="text-lg font-semibold text-gray-600 animate-pulse">
+            <div className="text-lg font-semibold text-gray-100 animate-pulse">
               Listening...
             </div>
           )}
@@ -65,13 +65,13 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ chat, onSendMessage, onNe
       </div>
         </main>
 
-    <footer className="p-4 bg-gray-900 shadow">
+    <footer className="p-4 bg-gray-600 shadow">
       <div className="flex items-center space-x-1">
         <input
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          className="flex-1 bg-gray-800 text-white p-2 rounded-l-lg"
+          className="flex-1 bg-gray-900 text-white p-2 rounded-l-lg"
           placeholder="Type a message..."
         />
        <button
@@ -91,7 +91,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ chat, onSendMessage, onNe
       </div>
       <button
           onClick={onNewChat}
-          className="mt-2 w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-lg flex items-center justify-center"
+          className="mt-2 w-full bg-blue-600 text-gray-800 px-4 py-2 rounded-lg flex items-center justify-center"
         >
           <FontAwesomeIcon icon={faPlus} className="mr-2" /> New Chat
         </button>
