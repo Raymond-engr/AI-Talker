@@ -10,6 +10,22 @@ const App: React.FC = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const [isNewChatPage, setIsNewChatPage] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(
+    () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
+
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode');
+    if (storedDarkMode === 'true') {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    localStorage.setItem('darkMode', isDarkMode ? 'false' : 'true');
+  };
+
 
   useEffect(() => {
     const savedChats = loadChats();
@@ -69,6 +85,7 @@ const App: React.FC = () => {
   };
 
   return (
+    <div className={isDarkMode ? 'dark' : ''}>
     <div className="flex flex-col h-screen bg-black text-white"> 
     {isNewChatPage ? (<NewChatPage
           chats={chats}
@@ -83,8 +100,11 @@ const App: React.FC = () => {
           chat={chats.find(chat => chat.id === activeChatId) || { id: 0, messages: [] }}
           onSendMessage={handleSendMessage}
           onNewChat={() => setIsNewChatPage(true)}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
         />
       )}
+    </div>
     </div>
   );
 };

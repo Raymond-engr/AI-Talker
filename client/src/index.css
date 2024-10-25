@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black text-white;
+  @apply dark:bg-black bg-gray-100 text-gray-900 dark:text-white;
 }
 
 #root {
   @apply h-screen;
+}
+
+* {
+  @apply transition-colors duration-100 ease-in-out duration-200;
 }
