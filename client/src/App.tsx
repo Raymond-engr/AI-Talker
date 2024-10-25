@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSocket } from './contexts/SocketContext';
 import ChatInterface from './components/ChatInterface';
 import NewChatPage from './components/NewChatPage';
@@ -32,7 +32,7 @@ const App: React.FC = () => {
     setIsNewChatPage(false);
   };
 
-  const addMessage = (chatId: number, message: Message) => {
+  const addMessage = useCallback((chatId: number, message: Message) => {
     setChats(prevChats =>
       prevChats.map(chat =>
         chat.id === chatId
@@ -40,27 +40,27 @@ const App: React.FC = () => {
           : chat
       )
     );
-  };
+  }, []);
 
-  const handleSendMessage = (text: string, isVoice: boolean = false) => {
-    if (activeChatId === null) return;
-
-    const userMessage: Message = { text, sender: 'user', timestamp: new Date().toISOString() };
-    addMessage(activeChatId, userMessage);
-
-    if (socket) {
-      const removeListener = () => {
-        socket.off('aiResponse');
-      };
-      socket.emit('chat message', { text, isVoice });
-      socket.once('aiResponse', (response: string) => {
-        const aiMessage: Message = { text: response, sender: 'ai', timestamp: new Date().toISOString() };
-        addMessage(activeChatId, aiMessage);
-        synthVoice(response);
-        removeListener();
-      });
-    }
-  };
+    const handleSendMessage = useCallback((text: string, isVoice: boolean = false) => {
+      if (activeChatId === null) return;
+  
+      const userMessage: Message = { text, sender: 'user', timestamp: new Date().toISOString() };
+      addMessage(activeChatId, userMessage);
+  
+      if (socket) {
+        const removeListener = () => {
+          socket.off('aiResponse');
+        };
+        socket.emit('chat message', { text, isVoice });
+        socket.once('aiResponse', (response: string) => {
+          const aiMessage: Message = { text: response, sender: 'ai', timestamp: new Date().toISOString() };
+          addMessage(activeChatId, aiMessage);
+          synthVoice(response);
+          removeListener();
+        });
+      }
+    }, [activeChatId, socket, addMessage]);
 
   const synthVoice = (text: string) => {
     const synth = window.speechSynthesis;

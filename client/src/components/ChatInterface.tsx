@@ -22,10 +22,14 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ chat, onSendMessage, onNe
     }
   }, [chat.messages]);
 
+  useEffect(() => {
+    if (text) {
+      onSendMessage(text, true);
+    }
+  }, [text, onSendMessage]);
+
   const handleSpeak = () => {
     startListening();
-    onSendMessage(text, true);
-    stopListening();
   };
 
   const handleSendText = () => {
