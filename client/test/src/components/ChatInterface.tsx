@@ -8,7 +8,6 @@ interface ChatInterfaceProps {
   onSendMessage: (text: string, isVoice?: boolean) => void;
   onNewChat: () => void;
 }
-
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ chat, onSendMessage, onNewChat }) => {
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);

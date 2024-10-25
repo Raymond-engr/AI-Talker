@@ -49,7 +49,7 @@ const App: React.FC = () => {
     addMessage(activeChatId, userMessage);
 
     if (socket) {
-      socket.emit('sendMessage', { text, isVoice });
+      socket.emit('chat message', { text, isVoice });
       socket.once('aiResponse', (response: string) => {
         const aiMessage: Message = { text: response, sender: 'ai', timestamp: new Date().toISOString() };
         addMessage(activeChatId, aiMessage);

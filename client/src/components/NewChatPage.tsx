@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/Footer';
-import { Chat } from '../types/global.d.ts';
+import type { Chat } from '../types/global.d.ts';
 
 interface NewChatPageProps {
   chats: Chat[];
@@ -37,4 +37,4 @@ const NewChatPage: React.FC<NewChatPageProps> = ({ chats, onSelectChat, onCreate
   );
 };
 
-export default ChatList;
+export default NewChatPage;
