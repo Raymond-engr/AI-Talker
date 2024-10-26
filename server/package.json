@@ -1,12 +1,35 @@
 {
-  "name": "server",
+  "name": "ai-talker-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec ts-node src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Raymond Omoyakhi <raymondomoyakhi@gmail.com>",
   "license": "ISC",
-  "description": ""
+  "description": "Backend for ai voice chat bot",
+  "dependencies": {
+    "@google-cloud/dialogflow": "^6.10.0",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dialogflow": "^4.0.3",
+    "dotenv": "^16.4.5",
+    "envalid": "^8.0.0",
+    "express": "^4.21.1",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.14",
+    "@types/node": "^22.7.7",
+    "@types/socket.io": "^3.0.1",
+    "globals": "^15.11.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
+  }
 }
